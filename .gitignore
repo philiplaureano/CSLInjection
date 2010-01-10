@@ -1,0 +1,7 @@
+*.suo
+*_Resharper*
+bin
+Debug
+*.pdb
+*.dat
+obj
