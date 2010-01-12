@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSLInjectionDemo", "CSLInjectionDemo\CSLInjectionDemo.csproj", "{F411F568-9C2B-4666-B44A-EACA7FDCAEF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDomain", "SampleDomain\SampleDomain.csproj", "{76A9133A-FACF-4ECF-8374-1AAD563CDCD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{9F13FBE2-410A-4013-8A9A-189949703EBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F411F568-9C2B-4666-B44A-EACA7FDCAEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F411F568-9C2B-4666-B44A-EACA7FDCAEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F411F568-9C2B-4666-B44A-EACA7FDCAEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F411F568-9C2B-4666-B44A-EACA7FDCAEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A9133A-FACF-4ECF-8374-1AAD563CDCD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A9133A-FACF-4ECF-8374-1AAD563CDCD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A9133A-FACF-4ECF-8374-1AAD563CDCD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A9133A-FACF-4ECF-8374-1AAD563CDCD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F13FBE2-410A-4013-8A9A-189949703EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F13FBE2-410A-4013-8A9A-189949703EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F13FBE2-410A-4013-8A9A-189949703EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F13FBE2-410A-4013-8A9A-189949703EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
