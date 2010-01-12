@@ -18,7 +18,9 @@ namespace CSLInjectionDemo
             // Intercept all object instantiations in the target assembly
             assembly.InterceptNewInstances(ShouldInterceptNewOperator, ShouldInjectCurrentMethod);
             AssemblyFactory.SaveAssembly(assembly, filename);
-            
+
+            Console.WriteLine("{0} successfully modified.", filename);
+
             return;
         }
 

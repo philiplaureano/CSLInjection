@@ -24,7 +24,7 @@ namespace ConsoleClient
             if (host == null)
                 return;
             
-            
+            // Configure the StructureMap container
             var registry = new Registry();
             registry.ForRequestedType<Engine>().
                 TheDefaultIsConcreteType<RaceCarEngine>();
@@ -32,11 +32,12 @@ namespace ConsoleClient
             var container = new Container(registry);
             var locator = new StructureMapServiceLocator(container);
             var activator = new ContainerTypeActivator(locator);
-
-            TypeActivatorRegistry.SetActivator(activator);
+            
 
             host.Activator = activator;
 
+            // Use the car after the new operator call has been
+            // replaced with the call to the SM container
             car.Move();
             car.Stop();
 

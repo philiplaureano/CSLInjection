@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LinFu.AOP.Interfaces;
 using Microsoft.Practices.ServiceLocation;
+using SampleDomain;
 
 namespace ConsoleClient
 {
@@ -23,7 +24,17 @@ namespace ConsoleClient
         public object CreateInstance(ITypeActivationContext context)
         {
             var targetType = context.TargetType;
-            var result = _locator.GetInstance(targetType);
+
+            // HACK: We need to manually map the FamilyCarEngine back to 
+            // an Engine type since there's currently no way to automatically
+            // figure out the correct service that should be 
+            // instantiated from the container
+            var serviceType = targetType;
+
+            if (serviceType == typeof(FamilyCarEngine))
+                serviceType = typeof(Engine);
+
+            var result = _locator.GetInstance(serviceType);
 
             return result;
         }
