@@ -931,7 +931,7 @@
             An extension class that adds support for intercepting the 'new' operator with LinFu.AOP.
             </summary>
     </member>
-    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.AssemblyDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.AssemblyDefinition,System.Func{Mono.Cecil.TypeReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
       <summary>
             Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
             </summary>
@@ -939,55 +939,99 @@
       <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
       <param name="methodFilter">The filter that determines which host methods will be modified</param>
       <remarks>
-            The type filter determines which concrete types and constructors should be intercepted at runtime.
+            The type filter determines the concrete types that should be intercepted at runtime.
             For example, the following functor code intercepts types named "Foo":
             <code>
-                Func&lt;MethodReference, TypeReference, MethodReference&gt; filter = 
-                (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
+                Func&lt;TypeReference, bool&gt; filter = 
+                concreteType =&gt; concreteType.Name == "Foo";
             </code></remarks>
     </member>
-    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.MethodDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.AssemblyDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
       <summary>
-            Modifies a <paramref name="target" /> method to support intercepting calls to the 'new' operator.
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
             </summary>
-      <param name="target">The item to be modified.</param>
-      <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <param name="target">The assembly to be modified.</param>
+      <param name="constructorFilter">The functor that determines which type instantiations should be intercepted.</param>
       <param name="methodFilter">The filter that determines which host methods will be modified</param>
       <remarks>
             The type filter determines which concrete types and constructors should be intercepted at runtime.
             For example, the following functor code intercepts types named "Foo":
             <code>
-                Func&lt;MethodReference, TypeReference, MethodReference&gt; filter = 
+                Func&lt;MethodReference, TypeReference, bool&gt; filter = 
                 (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
             </code></remarks>
     </member>
-    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.TypeDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.ModuleDefinition,System.Func{Mono.Cecil.TypeReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
       <summary>
-            Modifies a <paramref name="target" /> type to support intercepting calls to the 'new' operator.
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
             </summary>
-      <param name="target">The item to be modified.</param>
+      <param name="target">The assembly to be modified.</param>
       <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <param name="methodFilter">The filter that determines which host methods will be modified</param>
+      <remarks>
+            The type filter determines the concrete types that should be intercepted at runtime.
+            For example, the following functor code intercepts types named "Foo":
+            <code>
+                Func&lt;TypeReference, bool&gt; filter = 
+                concreteType =&gt; concreteType.Name == "Foo";
+            </code></remarks>
+    </member>
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.ModuleDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+      <summary>
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
+            </summary>
+      <param name="target">The assembly to be modified.</param>
+      <param name="constructorFilter">The functor that determines which type instantiations should be intercepted.</param>
       <param name="methodFilter">The filter that determines which host methods will be modified</param>
       <remarks>
             The type filter determines which concrete types and constructors should be intercepted at runtime.
             For example, the following functor code intercepts types named "Foo":
             <code>
-                Func&lt;MethodReference, TypeReference, MethodReference&gt; filter = 
+                Func&lt;MethodReference, TypeReference, bool&gt; filter = 
                 (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
             </code></remarks>
     </member>
-    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.ModuleDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.TypeDefinition,System.Func{Mono.Cecil.TypeReference,System.Boolean})">
       <summary>
-            Modifies a <paramref name="target" /> module to support intercepting calls to the 'new' operator.
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
             </summary>
-      <param name="target">The item to be modified.</param>
+      <param name="target">The assembly to be modified.</param>
       <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <remarks>
+            The type filter determines the concrete types that should be intercepted at runtime.
+            For example, the following functor code intercepts types named "Foo":
+            <code>
+                Func&lt;TypeReference, bool&gt; filter = 
+                concreteType =&gt; concreteType.Name == "Foo";
+            </code></remarks>
+    </member>
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.TypeDefinition,System.Func{Mono.Cecil.TypeReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+      <summary>
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
+            </summary>
+      <param name="target">The assembly to be modified.</param>
+      <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <param name="methodFilter">The filter that determines which host methods will be modified</param>
+      <remarks>
+            The type filter determines the concrete types that should be intercepted at runtime.
+            For example, the following functor code intercepts types named "Foo":
+            <code>
+                Func&lt;TypeReference, bool&gt; filter = 
+                concreteType =&gt; concreteType.Name == "Foo";
+            </code></remarks>
+    </member>
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.TypeDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+      <summary>
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
+            </summary>
+      <param name="target">The assembly to be modified.</param>
+      <param name="constructorFilter">The functor that determines which type instantiations should be intercepted.</param>
       <param name="methodFilter">The filter that determines which host methods will be modified</param>
       <remarks>
             The type filter determines which concrete types and constructors should be intercepted at runtime.
             For example, the following functor code intercepts types named "Foo":
             <code>
-                Func&lt;MethodReference, TypeReference, MethodReference&gt; filter = 
+                Func&lt;MethodReference, TypeReference, bool&gt; filter = 
                 (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
             </code></remarks>
     </member>
@@ -1022,6 +1066,51 @@
       <param name="target">The host that contains the methods that will be modified.</param>
       <param name="weaver">The custom <see cref="T:LinFu.AOP.Cecil.Interfaces.INewObjectWeaver" /> that will replace all calls to the new operator with the custom code emitted by the given weaver.</param>
       <param name="filter">The method filter that will determine which methods should be modified.</param>
+    </member>
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.AssemblyDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+      <summary>
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
+            </summary>
+      <param name="target">The item to be modified.</param>
+      <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <param name="methodFilter">The filter that determines which host methods will be modified</param>
+      <remarks>
+            The type filter determines which concrete types and constructors should be intercepted at runtime.
+            For example, the following functor code intercepts types named "Foo":
+            <code>
+                Func&lt;MethodReference, TypeReference, MethodReference, bool&gt; filter = 
+                (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
+            </code></remarks>
+    </member>
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.TypeDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+      <summary>
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
+            </summary>
+      <param name="target">The item to be modified.</param>
+      <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <param name="methodFilter">The filter that determines which host methods will be modified</param>
+      <remarks>
+            The type filter determines which concrete types and constructors should be intercepted at runtime.
+            For example, the following functor code intercepts types named "Foo":
+            <code>
+                Func&lt;MethodReference, TypeReference, MethodReference, bool&gt; filter = 
+                (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
+            </code></remarks>
+    </member>
+    <member name="M:LinFu.AOP.Cecil.NewOperatorInterceptionExtensions.InterceptNewInstances(Mono.Cecil.ModuleDefinition,System.Func{Mono.Cecil.MethodReference,Mono.Cecil.TypeReference,Mono.Cecil.MethodReference,System.Boolean},System.Func{Mono.Cecil.MethodReference,System.Boolean})">
+      <summary>
+            Modifies a <paramref name="target" /> assembly to support intercepting calls to the 'new' operator.
+            </summary>
+      <param name="target">The item to be modified.</param>
+      <param name="typeFilter">The functor that determines which type instantiations should be intercepted.</param>
+      <param name="methodFilter">The filter that determines which host methods will be modified</param>
+      <remarks>
+            The type filter determines which concrete types and constructors should be intercepted at runtime.
+            For example, the following functor code intercepts types named "Foo":
+            <code>
+                Func&lt;MethodReference, TypeReference, MethodReference, bool&gt; filter = 
+                (constructor, concreteType, hostMethod) =&gt; concreteType.Name == "Foo";
+            </code></remarks>
     </member>
     <member name="T:LinFu.AOP.Cecil.TypeDefinitionExtensions">
       <summary>
@@ -1060,478 +1149,6 @@
             Visits a <see cref="T:Mono.Cecil.TypeDefinition" /> instance.
             </summary>
       <param name="type">A <see cref="T:Mono.Cecil.TypeDefinition" /> object.</param>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IActivationContext">
-      <summary>
-            Represents a class that describes a request to instantiate a particular object type.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IActivationContext.TargetType">
-      <summary>
-            Gets the value indicating the type to be instantiated.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IActivationContext.AdditionalArguments">
-      <summary>
-            Gets the value indicating the arguments that will be passed to the constructor during instantiation.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.ActivationContext">
-      <summary>
-            Represents a class that describes a request to instantiate a particular object type.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.ActivationContext.#ctor(System.Type,System.Object[])">
-      <summary>
-            Initializes the context with the given parameters.
-            </summary>
-      <param name="concreteType">The type to be instantiated.</param>
-      <param name="additionalArguments">The additional arguments that must be passed to the constructor.</param>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.ActivationContext.TargetType">
-      <summary>
-            Gets the value indicating the type to be instantiated.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.ActivationContext.AdditionalArguments">
-      <summary>
-            Gets the value indicating the arguments that will be passed to the constructor during instantiation.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.ActivatorExtensions">
-      <summary>
-            An extension class that adds helper methods to the <see cref="T:LinFu.AOP.Interfaces.IActivator`1" /> interface.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.ActivatorExtensions.CreateInstance(LinFu.AOP.Interfaces.IActivator{LinFu.AOP.Interfaces.IActivationContext},System.Type,System.Object[])">
-      <summary>
-            Instantiates the <paramref name="targetType" /> with the given <paramref name="activator" /> and <paramref name="constructorArguments" />.
-            </summary>
-      <param name="activator">The <see cref="T:LinFu.AOP.Interfaces.IActivator`1" /> instance that will be responsible for creating the <paramref name="targetType" />.</param>
-      <param name="targetType">The type to be created.</param>
-      <param name="constructorArguments">The arguments that will be passed to the constructor.</param>
-      <returns>An object reference that matches the given <paramref name="targetType" />.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.ActivatorExtensions.CreateInstance``1(LinFu.AOP.Interfaces.IActivator{LinFu.AOP.Interfaces.IActivationContext},System.Object[])">
-      <summary>
-            Instantiates the <paramref name="targetType" /> with the given <paramref name="activator" /> and <paramref name="constructorArguments" />.
-            </summary>
-      <param name="activator">The <see cref="T:LinFu.AOP.Interfaces.IActivator`1" /> instance that will be responsible for creating the target type.</param>
-      <param name="constructorArguments">The arguments that will be passed to the constructor.</param>
-      <typeparam name="T">The target type that will be instantiated by the activator.</typeparam>
-      <returns>An object reference that matches the given <paramref name="targetType" />.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IBeforeInvoke">
-      <summary>
-            Represents a class that is invoked before a method call.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IBeforeInvoke.BeforeInvoke(LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            This method will be called just before the actual
-            method call is executed.
-            </summary>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> associated with the method call.</param>
-      <seealso cref="T:LinFu.AOP.Interfaces.IInvocationInfo" />
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IAfterInvoke">
-      <summary>
-            Represents a class that is invoked after a method call.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IAfterInvoke.AfterInvoke(LinFu.AOP.Interfaces.IInvocationInfo,System.Object)">
-      <summary>
-            This method will be called immediately after the actual
-            method call is executed.
-            </summary>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> associated with the method call.</param>
-      <param name="returnValue">The value returned from the actual method call.</param>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IAroundInvoke">
-      <summary>
-            Represents a class that can wrap itself around any given method call.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IFieldInterceptionContext">
-      <summary>
-            Represents a class that describes the state of a field just as it is being intercepted.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IFieldInterceptionContext.Target">
-      <summary>
-            Gets a value indicating the target instance that is attached to the target field.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IFieldInterceptionContext.TargetMethod">
-      <summary>
-            Gets a value indicating the host method that is currently accessing the target field.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IFieldInterceptionContext.TargetField">
-      <summary>
-            Gets a value indicating the field that is currently being accessed by the target method.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IFieldInterceptionContext.HostType">
-      <summary>
-            Gets a value indicating the <see cref="T:System.Type" /> that holds the target field.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.FieldInterceptionContext">
-      <summary>
-            Represents a class that describes the state of a field just as it is being intercepted by a <see cref="T:LinFu.AOP.Interfaces.IFieldInterceptor" />.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.FieldInterceptionContext.#ctor(System.Object,System.Reflection.MethodBase,System.Reflection.FieldInfo,System.Type)">
-      <summary>
-            Initializes a new instance of the FieldInterceptionContext class.
-            </summary>
-      <param name="target">The target that hosts the given field.</param>
-      <param name="targetMethod">The method that accessed the target field.</param>
-      <param name="targetField">The field currently being accessed by the target method.</param>
-      <param name="hostType">The type that hosts the target field.</param>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.FieldInterceptionContext.Target">
-      <summary>
-            Gets a value indicating the target instance that is attached to the target field.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.FieldInterceptionContext.TargetMethod">
-      <summary>
-            Gets a value indicating the host method that is currently accessing the target field.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.FieldInterceptionContext.TargetField">
-      <summary>
-            Gets a value indicating the field that is currently being accessed by the target method.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.FieldInterceptionContext.HostType">
-      <summary>
-            Gets a value indicating the <see cref="T:System.Type" /> that holds the target field.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.FieldInterceptorRegistry">
-      <summary>
-            Represents a registry class that allows users to intercept fields from a single location.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.FieldInterceptorRegistry.GetInterceptor(LinFu.AOP.Interfaces.IFieldInterceptionContext)">
-      <summary>
-            Gets current the <see cref="T:LinFu.AOP.Interfaces.IFieldInterceptionContext" /> associated with the <see cref="T:LinFu.AOP.Interfaces.FieldInterceptorRegistry" />.
-            </summary>
-      <param name="context">The <see cref="T:LinFu.AOP.Interfaces.IFieldInterceptionContext" /> instance that describes the state of the method call when the field getter or setter is called.</param>
-      <returns>The field interceptor that will be used to preempt field getter and setter calls.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.FieldInterceptorRegistry.SetInterceptor(LinFu.AOP.Interfaces.IFieldInterceptor)">
-      <summary>
-            Sets current the <see cref="T:LinFu.AOP.Interfaces.IFieldInterceptionContext" /> that will be associated with the <see cref="T:LinFu.AOP.Interfaces.FieldInterceptorRegistry" />.
-            </summary>
-      <param name="interceptor">The field interceptor that will be used to preempt field getter and setter calls.</param>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IActivator`1">
-      <summary>
-            Represents a class that can instantiate object instances.
-            </summary>
-      <typeparam name="TContext">
-            The type that describes the context of the object instantiation.
-            </typeparam>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IActivator`1.CreateInstance(`0)">
-      <summary>
-            Creates an object instance.
-            </summary>
-      <param name="context">The context that describes the request to instantiate the target type.</param>
-      <returns>A valid object instance.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IActivatorHost">
-      <summary>
-            Represents a type that can intercept activation requests.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IActivatorHost.Activator">
-      <summary>
-            Gets or sets the value indicating the <see cref="T:LinFu.AOP.Interfaces.ITypeActivator" /> that
-            will be used to instantiate object types.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IAroundInvokeProvider">
-      <summary>
-            Represents a class that injects code around a method implementation.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IAroundInvokeProvider.GetSurroundingImplementation(LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            Gets the <see cref="T:LinFu.AOP.Interfaces.IAroundInvoke" /> instance that will be executed
-            before and after the target method (specified in the <paramref name="context" /> parameter)
-            is called.
-            </summary>
-      <param name="context">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> that describes the context of the method call at the call site.</param>        /// <returns>An <see cref="T:LinFu.AOP.Interfaces.IAroundInvoke" /> instance if the surrounding behavior can be found; otherwise, it should return <c>null</c>.</returns></member>
-    <member name="T:LinFu.AOP.Interfaces.IFieldInterceptionHost">
-      <summary>
-            Represents a type that has been modified to intercept field getters and setters.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IFieldInterceptionHost.FieldInterceptor">
-      <summary>
-            Gets or sets the value indicating the interceptor that will handle field getters and setters.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IFieldInterceptor">
-      <summary>
-            Represents a type that can intercept field getter and setter calls.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IFieldInterceptor.CanIntercept(LinFu.AOP.Interfaces.IFieldInterceptionContext)">
-      <summary>
-            Determines whether or not a field can be intercepted.
-            </summary>
-      <param name="context">The context that describes the field to be intercepted.</param>
-      <returns>
-        <c>true</c> if it can be intercepted; otherwise, it will return <c>false</c>.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IFieldInterceptor.GetValue(LinFu.AOP.Interfaces.IFieldInterceptionContext)">
-      <summary>
-            Gets the value of a field.
-            </summary>
-      <param name="context">The context that describes the field to be intercepted.</param>
-      <returns>The value of the target field.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IFieldInterceptor.SetValue(LinFu.AOP.Interfaces.IFieldInterceptionContext,System.Object)">
-      <summary>
-            Sets the value of a field.
-            </summary>
-      <param name="context">The context that describes the field to be intercepted.</param>
-      <param name="value">The original value that will be assigned to the target field.</param>
-      <returns>The value that will be assigned to the target field.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IInterceptor">
-      <summary>
-            Represents a class that can dynamically intercept method calls.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IInterceptor.Intercept(LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            Intercepts a method call using the given
-            <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> instance.
-            </summary>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> instance that will 
-            contain all the necessary information associated with a 
-            particular method call.</param>
-      <returns>The return value of the target method. If the return type of the target
-            method is <see cref="T:System.Void" />, then the return value will be ignored.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IInvocationInfo">
-      <summary>
-            Represents the information associated with 
-            a single method call.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IInvocationInfo.Target">
-      <summary>
-            The target instance currently being called.
-            </summary>
-      <remarks>This typically is a reference to a proxy object.</remarks>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IInvocationInfo.TargetMethod">
-      <summary>
-            The method currently being called.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IInvocationInfo.ReturnType">
-      <summary>
-            The return type of the <see cref="P:LinFu.AOP.Interfaces.IInvocationInfo.TargetMethod" />.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IInvocationInfo.ParameterTypes">
-      <summary>
-            The parameter types for the current target method.
-            </summary>
-      <remarks>
-        <para>
-            This could be very useful in cases where the actual target method
-            is based on a generic type definition. In such cases, 
-            the <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> instance needs to be able
-            to describe the actual parameter types being used by the
-            current generic type instantiation. This property helps
-            users determine which parameter types are actually being used
-            at the time of the method call.
-            </para>
-      </remarks>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IInvocationInfo.TypeArguments">
-      <summary>
-            If the <see cref="P:LinFu.AOP.Interfaces.IInvocationInfo.TargetMethod" /> method is a generic method, 
-            this will hold the generic type arguments used to construct the
-            method.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IInvocationInfo.Arguments">
-      <summary>
-            The arguments used in the method call.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IInvokeWrapper">
-      <summary>
-            Represents a special type of interceptor that can
-            wrap itself around a method call.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IInvokeWrapper.DoInvoke(LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            This method will provide the actual implementation
-            for the <see cref="P:LinFu.AOP.Interfaces.IInvocationInfo.TargetMethod">target method</see>
-            instance.
-            </summary>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> associated with the method call.</param>
-      <returns>The actual return value from the <see cref="P:LinFu.AOP.Interfaces.IInvocationInfo.TargetMethod" />.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.ITypeActivationContext">
-      <summary>
-            Represents a special type of <see cref="T:LinFu.AOP.Interfaces.IActivationContext" /> that can be used to instantiate a given type
-            and can be used to describe the method that invoked the instantiation operation as well as specify the object
-            instance that invoked the instantiation itself.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.ITypeActivationContext.Target">
-      <summary>
-            Gets the value indicating the object instance that initiated the object instantiation operation.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.ITypeActivationContext.TargetMethod">
-      <summary>
-            Gets the value indiating the <see cref="T:System.Reflection.MethodBase" /> instance that initiated the object instantiation operation.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.ITypeActivator">
-      <summary>
-            Represents an <see cref="T:LinFu.AOP.Interfaces.IActivator`1" /> that can instantiate objects from within a particular method.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.ITypeActivator.CanActivate(LinFu.AOP.Interfaces.ITypeActivationContext)">
-      <summary>
-            Determines whether or not a type can be instantiated using the 
-            <paramref name="context" />.
-            </summary>
-      <param name="context">The <see cref="T:LinFu.AOP.Interfaces.ITypeActivationContext" /> instance that describes the type to be created.</param>
-      <returns>
-        <c>true</c> if the type can be created; otherwise, it will return <c>false</c>.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IMethodReplacementHost">
-      <summary>
-            Represents a type that can have its method body  implementations replaced at runtime.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IMethodReplacementHost.MethodReplacementProvider">
-      <summary>
-            Gets or sets a value indicating the <see cref="T:LinFu.AOP.Interfaces.IMethodReplacementProvider" /> that will be used to swap method body implementations at runtime.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IMethodReplacementProvider">
-      <summary>
-            Represents a type that can swap method body implementations at runtime.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IMethodReplacementProvider.CanReplace(System.Object,LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            Determines whether or not the current method implementation can be replaced.
-            </summary>
-      <param name="host">The target instance of the method call.</param>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> that describes the context of the method call.</param>
-      <returns>
-        <c>true</c> if the method can be intercepted; otherwise, it will return <c>false</c>.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.IMethodReplacementProvider.GetMethodReplacement(System.Object,LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            Obtains the <see cref="T:LinFu.AOP.Interfaces.IInterceptor" /> instance that will be used to replace the current method call.
-            </summary>
-      <param name="host">The target instance of the method call.</param>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> that describes the context of the method call.</param>
-      <returns>The interceptor that will intercept the method call itself.</returns>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.IModifiableType">
-      <summary>
-            Represents a type that has been modified to support
-            pervasive method interception.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IModifiableType.IsInterceptionDisabled">
-      <summary>
-            Gets or sets the value indicating whether or not 
-            method interception should be disabled.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.IModifiableType.AroundInvokeProvider">
-      <summary>
-            Gets or sets the value indicating the <see cref="T:LinFu.AOP.Interfaces.IAroundInvokeProvider" />
-            that will be used to inject code "around" a particular method body
-            implementation.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.TypeActivationContext">
-      <summary>
-            Represents an <see cref="T:LinFu.AOP.Interfaces.ActivationContext" /> that can be used to instantiate a given type
-            and be used to describe the method that invoked the instantiation operation as well as specify the object
-            instance that invoked the instantiation itself.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.TypeActivationContext.#ctor(System.Object,System.Reflection.MethodBase,System.Type,System.Object[])">
-      <summary>
-            Initializes a new instance of the MethodActivationContext class.
-            </summary>
-      <param name="target">The object instance that initiated the activation request.</param>
-      <param name="targetMethod">The method where the activation was invoked.</param>
-      <param name="concreteType">The type to be constructed.</param>
-      <param name="additionalArguments">The additional arguments that will be passed to the constructor.</param>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.TypeActivationContext.Target">
-      <summary>
-            Gets the value indicating the object instance that initiated the object instantiation operation.
-            </summary>
-    </member>
-    <member name="P:LinFu.AOP.Interfaces.TypeActivationContext.TargetMethod">
-      <summary>
-            Gets the value indiating the <see cref="T:System.Reflection.MethodBase" /> instance that initiated the object instantiation operation.
-            </summary>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.TypeActivatorRegistry">
-      <summary>
-            Represents a registry that allows users to statically register <see cref="T:LinFu.AOP.Interfaces.ITypeActivator" />
-            instances.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.TypeActivatorRegistry.GetActivator(LinFu.AOP.Interfaces.ITypeActivationContext)">
-      <summary>
-            Obtains an activator for the given <paramref name="context" />.
-            </summary>
-      <param name="context">The <see cref="T:LinFu.AOP.Interfaces.ITypeActivationContext" /> instance that describes the object to be created.</param>
-      <returns>A method activator.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.TypeActivatorRegistry.SetActivator(LinFu.AOP.Interfaces.ITypeActivator)">
-      <summary>
-            Sets the <see cref="T:LinFu.AOP.Interfaces.ITypeActivator" /> that will be used to 
-            instantiate object instances.
-            </summary>
-      <param name="activator">The <see cref="T:LinFu.AOP.Interfaces.ITypeActivator" /> that will instantiate types.</param>
-    </member>
-    <member name="T:LinFu.AOP.Interfaces.MethodReplacementProviderRegistry">
-      <summary>
-            Represents a static type that allows users to register a method replacement provider from a single location.
-            </summary>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.MethodReplacementProviderRegistry.GetProvider(System.Object,LinFu.AOP.Interfaces.IInvocationInfo)">
-      <summary>
-            Returns the provider that is currently attached to the registry.
-            </summary>
-      <param name="host">The type that is currently being intercepted.</param>
-      <param name="info">The <see cref="T:LinFu.AOP.Interfaces.IInvocationInfo" /> object that describes the invocation context.</param>
-      <returns>A <see cref="T:LinFu.AOP.Interfaces.IMethodReplacementProvider" /> that will determine the code that will be executed once a target method is called.</returns>
-    </member>
-    <member name="M:LinFu.AOP.Interfaces.MethodReplacementProviderRegistry.SetProvider(LinFu.AOP.Interfaces.IMethodReplacementProvider)">
-      <summary>
-            Assigns the <paramref name="provider" /> to the MethodReplacementProvider registry.
-            </summary>
-      <returns>A <see cref="T:LinFu.AOP.Interfaces.IMethodReplacementProvider" /> that will determine the code that will be executed once a target method is called.</returns>
     </member>
     <member name="T:LinFu.Finders.Interfaces.ICriteria`1">
       <summary>
@@ -6189,545 +5806,6 @@
       <param name="proxyImplementation">The functor that will invoked every time a method is called on the proxy.</param>
       <param name="baseInterfaces">The additional list of interfaces that the proxy will implement.</param>
       <returns>A valid proxy instance.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.IActionLoader`2">
-      <summary>
-            Represents a class that can configure 
-            a target of type <typeparamref name="TTarget" />
-            using an input type of <typeparamref name="TInput" />.
-            </summary>
-      <typeparam name="TTarget">The target type to configure.</typeparam>
-      <typeparam name="TInput">The input that will be used to configure the target.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.IActionLoader`2.Load(`1)">
-      <summary>
-            Generates a set of <see cref="T:System.Action`1" /> instances
-            using the given <paramref name="input" />.
-            </summary>
-      <param name="input">The input that will be used to configure the target.</param>
-      <returns>A set of <see cref="T:System.Action`1" /> instances. This cannot be <c>null</c>.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.IActionLoader`2.CanLoad(`1)">
-      <summary>
-            Determines if the PluginLoader can load the <paramref name="inputType" />.
-            </summary>
-      <param name="inputType">The target type that might contain the target <typeparamref name="TAttribute" /> instance.</param>
-      <returns>
-        <c>true</c> if the type can be loaded; otherwise, it returns <c>false</c>.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.AssemblyActionLoader`1">
-      <summary>
-            A class that reads an assembly and converts it into a set of actions
-            that can be used to build the list of actions against the <typeparamref name="TTarget" />
-            type.
-            </summary>
-      <typeparam name="TTarget">The target type.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyActionLoader`1.#ctor(System.Func{System.Collections.Generic.IList{LinFu.Reflection.IActionLoader{`0,System.Type}}})">
-      <summary>
-            Initializes the class with a set of <see cref="T:LinFu.Reflection.IActionLoader`2" />
-            instances that will be used to load the target assembly.
-            </summary>
-      <param name="getTypeLoaders">The delegate that will return the actual list of typeloaders.</param>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyActionLoader`1.Load(System.Reflection.Assembly)">
-      <summary>
-            Loads the target assembly and creates an action that can
-            create the list of actions which will modify the <typeparamref name="TTarget" /> instance.
-            </summary>
-      <param name="input">The target assembly.</param>
-      <returns>The list of actions which will modify the list of actions that will be executed against the <typeparamref name="TTarget" /> instance.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyActionLoader`1.CanLoad(System.Reflection.Assembly)">
-      <summary>
-            Determines if an <see cref="T:System.Reflection.Assembly" /> instance can be loaded.
-            </summary>
-      <param name="assembly">The target assembly.</param>
-      <returns>Returns <c>true</c> if the assembly is not <c>null</c>.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyActionLoader`1.CreateActionsFrom(System.Reflection.Assembly,System.Collections.Generic.IList{System.Action{`0}})">
-      <summary>
-            Generates a list of actions from a target assemby.
-            </summary>
-      <param name="assembly">The target assembly.</param>
-      <param name="resultList">The list that will store the resulting actions.</param>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyActionLoader`1.LoadResultsFromType(System.Type,System.Collections.Generic.ICollection{System.Action{`0}})">
-      <summary>
-            Generates the list of <see cref="T:System.Action`1" />
-            instances which will be used to configure a target instance.
-            </summary>
-      <param name="type">The <see cref="T:System.Type" /> instance that holds the configuration information.</param>
-      <param name="results">The list that will hold the actions which will configure the container.</param>
-    </member>
-    <member name="P:LinFu.Reflection.AssemblyActionLoader`1.TypeExtractor">
-      <summary>
-            The <see cref="T:LinFu.Reflection.ITypeExtractor" /> instance that will
-            determine which types will be extracted from an assembly.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.IAssemblyLoader">
-      <summary>
-            Represents a class that loads assemblies into memory
-            from disk.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.IAssemblyLoader.Load(System.String)">
-      <summary>
-            Loads the target assembly into memory.
-            </summary>
-      <param name="assemblyFile">The full path and filename of the assembly to load.</param>
-      <returns>A loaded <see cref="T:System.Reflection.Assembly" /> instance.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.AssemblyLoader">
-      <summary>
-            Represents a class that loads assemblies into memory
-            from disk.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyLoader.Load(System.String)">
-      <summary>
-            Loads the target assembly into memory.
-            </summary>
-      <param name="assemblyFile">The full path and filename of the assembly to load.</param>
-      <returns>A loaded <see cref="T:System.Reflection.Assembly" /> instance.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.IAssemblyTargetLoader`1">
-      <summary>
-            Represents a specific <see cref="T:LinFu.Reflection.IActionLoader`2" />
-            type that can load configuration information from an assembly
-            and apply it to a <typeparamref name="TTarget" /> instance.
-            </summary>
-      <typeparam name="TTarget">The target type to configure.</typeparam>
-    </member>
-    <member name="P:LinFu.Reflection.IAssemblyTargetLoader`1.AssemblyLoader">
-      <summary>
-            The <see cref="T:LinFu.Reflection.IAssemblyLoader" /> instance that will load
-            the target assemblies.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.IAssemblyTargetLoader`1.TypeLoaders">
-      <summary>
-            The list of ActionLoaders that will be used to
-            configure the target.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.AssemblyTargetLoader`1">
-      <summary>
-            Represents a loader class that takes <see cref="T:System.Type" />
-            instances as input and generates <see cref="T:System.Action`1" />
-            instances that can be used to configure a <typeparamref name="TTarget" />
-            instance.
-            </summary>
-      <typeparam name="TTarget">The target type to configure.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyTargetLoader`1.#ctor">
-      <summary>
-            Initializes the class with the default property values.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyTargetLoader`1.CanLoad(System.String)">
-      <summary>
-            Determines whether or not the current type loader
-            instance can load the current file type.
-            </summary>
-      <remarks>
-            This class only loads assemblies with the ".dll" extension.
-            </remarks>
-      <param name="filename">The filename and full path of the target file.</param>
-      <returns>Returns <c>true</c> if the file can be loaded; otherwise, the result is <c>false</c>.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.AssemblyTargetLoader`1.Load(System.String)">
-      <summary>
-            Reads an input file using the given <paramref name="filename" />
-            and converts it into a set of <see cref="T:System.Action`1" />
-            instances that can be applied to a target class instance..
-            </summary>
-      <remarks>This class can only load valid .NET Assemblies.</remarks>
-      <param name="filename">The target file to be loaded.</param>
-      <returns>A set of <see cref="T:System.Action`1" /> instances to apply to a target type.</returns>
-    </member>
-    <member name="P:LinFu.Reflection.AssemblyTargetLoader`1.AssemblyLoader">
-      <summary>
-            The <see cref="T:LinFu.Reflection.IAssemblyLoader" /> instance that will load
-            the target assemblies.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.AssemblyTargetLoader`1.AssemblyActionLoader">
-      <summary>
-            Gets or sets the value indicating the action loader 
-            responsible for reading an assembly and converts it to 
-            a list of actions to be performed against the target type.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.AssemblyTargetLoader`1.TypeLoaders">
-      <summary>
-            The list of ActionLoaders that will be used to
-            configure the target.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.BasePluginLoader`2">
-      <summary>
-            Implements the basic functionality of a plugin loader.
-            </summary>
-      <typeparam name="TTarget">The target type being configured.</typeparam>
-      <typeparam name="TAttribute">The attribute type that will be used to mark a type as a plugin.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.BasePluginLoader`2.CanLoad(System.Type)">
-      <summary>
-            Determines if the plugin loader can load the <paramref name="inputType" />.
-            </summary>
-      <param name="inputType">The target type that might contain the target <typeparamref name="TAttribute" /> instance.</param>
-      <returns>
-        <c>true</c> if the type can be loaded; otherwise, it returns <c>false</c>.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.BasePluginLoader`2.Load(System.Type)">
-      <summary>
-            Generates a set of <see cref="T:System.Action`1" /> instances
-            using the given <paramref name="input" />.
-            </summary>
-      <param name="input">The input that will be used to configure the target.</param>
-      <returns>A set of <see cref="T:System.Action`1" /> instances. This cannot be <c>null</c>.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.CollectionExtensions">
-      <summary>
-            Adds additional support methods to the standard System.Collection classes.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.CollectionExtensions.HasElementWith``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
-      <summary>
-            Determines whether or not an element exists that matches the given
-            <paramref name="predicate" />.
-            </summary>
-      <typeparam name="T">The element type.</typeparam>
-      <param name="items">The list of items being searched.</param>
-      <param name="predicate">The predicate that will be used to describe the matching items.</param>
-      <returns>Returns <c>true</c> if at least one match is found; otherwise, it will return <c>false</c>.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.IDirectoryListing">
-      <summary>
-            Represents a class that can list the files
-            in a given directory.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.IDirectoryListing.GetFiles(System.String,System.String)">
-      <summary>
-            Returns the names of the files in the specified directory
-            that match the specified search pattern.
-            </summary>
-      <param name="path">The directory to search.</param>
-      <param name="searchPattern">The search string to match against the names of the files in the <paramref name="path" />.</param>
-      <returns>The list of files that match the <paramref name="path" /> and <paramref name="searchPattern" /></returns>
-    </member>
-    <member name="T:LinFu.Reflection.DefaultDirectoryLister">
-      <summary>
-            A class that lists the contents of a given directory.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.DefaultDirectoryLister.GetFiles(System.String,System.String)">
-      <summary>
-            Returns a list of files that match the <paramref name="searchPattern" />
-            from the given directory <paramref name="path" />.
-            </summary>
-      <param name="path">The target directory to search.</param>
-      <param name="searchPattern">The search string to match against the names of the files in the <paramref name="path" />.</param>
-      <returns>The list of files that match the <paramref name="path" /> and <paramref name="searchPattern" /></returns>
-    </member>
-    <member name="T:LinFu.Reflection.IInitialize`1">
-      <summary>
-            Represents classes that need to be initialized
-            every time a particular 
-            instance creates that type.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.IInitialize`1.Initialize(`0)">
-      <summary>
-            Initializes the target with the
-            particular <typeparamref name="T" /> instance.
-            </summary>
-      <param name="source">The <typeparamref name="T" /> instance that will hold the target type.</param>
-    </member>
-    <member name="T:LinFu.Reflection.ILoader`1">
-      <summary>
-            Represents a generic interface for an abstract loader
-            that can read configuration information from disk
-            and apply it to a <typeparamref name="TTarget" /> instance.
-            </summary>
-      <typeparam name="TTarget">The class type being configured.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.ILoader`1.LoadDirectory(System.String,System.String)">
-      <summary>
-            Loads the configuration using the files listed in 
-            the target <paramref name="directory" /> that match 
-            the given <paramref name="filespec">file pattern</paramref>.
-            </summary>
-      <param name="directory">The full path of the location to scan.</param>
-      <param name="filespec">The wildcard file pattern string to use when specifying the target files.</param>
-    </member>
-    <member name="M:LinFu.Reflection.ILoader`1.LoadInto(`0)">
-      <summary>
-            Configures the <paramref name="target" /> instance 
-            using the configuration currently loaded from disk.
-            </summary>
-      <param name="target">The <typeparamref name="TTarget" /> instance to be configured.</param>
-    </member>
-    <member name="M:LinFu.Reflection.ILoader`1.Reset">
-      <summary>
-            Clears the currently loaded configuration
-            and resets the loader back to its defaults.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.ILoader`1.Plugins">
-      <summary>
-            The list of <see cref="T:LinFu.Reflection.ILoaderPlugin`1" />
-            instances that will be used to
-            signal the beginning and end of the
-            load sequence.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.ILoader`1.FileLoaders">
-      <summary>
-            The list of <see cref="T:LinFu.Reflection.IActionLoader`2" />
-            instances responsible for configuring the <typeparamref name="TTarget" /> instance.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.ILoader`1.DirectoryLister">
-      <summary>
-            Gets or sets the <see cref="T:LinFu.Reflection.IDirectoryListing" /> instance 
-            responsible for returning a list of filenames
-            to the loader for processing.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.ILoader`1.CustomLoaderActions">
-      <summary>
-            The custom list of actions that will be
-            performed prior to the beginning of a load operation.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.ILoader`1.QueuedActions">
-      <summary>
-            The list of actions that will execute
-            every time a target instance is configured.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.ILoaderPlugin`1">
-      <summary>
-            Represents a component that can monitor
-            a target instance as it loads.
-            </summary>
-      <typeparam name="TTarget">The target instance type.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.ILoaderPlugin`1.BeginLoad(`0)">
-      <summary>
-            Signals the beginning of a load.
-            </summary>
-      <param name="target">The target being loaded.</param>
-    </member>
-    <member name="M:LinFu.Reflection.ILoaderPlugin`1.EndLoad(`0)">
-      <summary>
-            Signals the end of a load.
-            </summary>
-      <param name="target">The target being loaded.</param>
-    </member>
-    <member name="T:LinFu.Reflection.ITypeExtractor">
-      <summary>
-            Represents a type that can extract <see cref="T:System.Type" />
-            objects from an <see cref="T:System.Reflection.Assembly" /> instance.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.ITypeExtractor.GetTypes(System.Reflection.Assembly)">
-      <summary>
-            Returns a set of types from a given assembly.
-            </summary>
-      <param name="targetAssembly">The <see cref="T:System.Reflection.Assembly" /> that contains the target types.</param>
-      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of types from the target assembly.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.Loader`1">
-      <summary>
-            Represents a generic loader class that can
-            load multiple <see cref="T:System.Action`1" /> delegates from multiple files and
-            apply them to a particular <typeparamref name="TTarget" /> instance.
-            </summary>
-      <typeparam name="TTarget">
-      </typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.Loader`1.#ctor">
-      <summary>
-            Initializes the target with the default settings.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.Loader`1.LoadDirectory(System.String,System.String)">
-      <summary>
-            Loads the container with the files listed in 
-            the target <paramref name="directory" /> that match 
-            the given <paramref name="filespec">file pattern</paramref>.
-            </summary>
-      <param name="directory">The full path of the location to scan.</param>
-      <param name="filespec">The wildcard file pattern string to use when specifying the target files.</param>
-    </member>
-    <member name="M:LinFu.Reflection.Loader`1.LoadInto(`0)">
-      <summary>
-            Loads the current configuration into the <paramref name="target" />
-            instance.
-            </summary>
-      <param name="target">
-      </param>
-    </member>
-    <member name="M:LinFu.Reflection.Loader`1.ShouldLoad(LinFu.Reflection.ILoaderPlugin{`0})">
-      <summary>
-            Determines whether or not a specific plugin should be loaded.
-            </summary>
-      <param name="plugin">The target plugin to be loaded.</param>
-      <returns>
-        <c>true</c> if the plugin should be loaded; otherwise, it will return <c>false</c>.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.Loader`1.Reset">
-      <summary>
-            Clears the currently loaded configuration
-            and resets the loader back to its defaults.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.Loader`1.LoadFile(System.String)">
-      <summary>
-            Loads the <paramref name="currentFile">current file</paramref>
-            using the list of associated <see cref="P:LinFu.Reflection.Loader`1.FileLoaders" />.
-            </summary>
-      <param name="currentFile">The full path and filename being loaded.</param>
-    </member>
-    <member name="P:LinFu.Reflection.Loader`1.QueuedActions">
-      <summary>
-            The list of actions that will execute
-            every time a target instance is configured.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.Loader`1.CustomLoaderActions">
-      <summary>
-            The custom list of actions that will be
-            performed prior to the beginning of the first load operation.
-            </summary>
-      <remarks>
-            These actions will be performed only once per reset.
-            </remarks>
-    </member>
-    <member name="P:LinFu.Reflection.Loader`1.Plugins">
-      <summary>
-            The list of <see cref="T:LinFu.Reflection.ILoaderPlugin`1" />
-            instances that will be used to
-            signal the beginning and end of the
-            load sequence.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.Loader`1.FileLoaders">
-      <summary>
-            The list of <see cref="T:LinFu.Reflection.IActionLoader`2" />
-            instances responsible for configuring the target instance.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.Loader`1.DirectoryLister">
-      <summary>
-            Gets or sets the <see cref="T:LinFu.Reflection.IDirectoryListing" /> instance 
-            responsible for returning a list of filenames
-            to the loader for processing.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.LoaderPluginAttribute">
-      <summary>
-            Marks a class as a loader plugin type.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.PluginLoader`2">
-      <summary>
-            Represents a loader class that can load
-            <see cref="T:LinFu.Reflection.ILoaderPlugin`1" /> instances
-            marked with a particular <typeparamref name="TAttribute" />
-            type.
-            </summary>
-      <typeparam name="TTarget">The target type being configured.</typeparam>
-      <typeparam name="TAttribute">The attribute type that marks a type as a plugin type.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.PluginLoader`2.CanLoad(System.Type)">
-      <summary>
-            Determines if the plugin loader can load the <paramref name="inputType" />.
-            </summary>
-      <remarks>The target type must implement <see cref="T:LinFu.Reflection.ILoaderPlugin`1" /> before it can be loaded.</remarks>
-      <param name="inputType">The target type that might contain the target <typeparamref name="TAttribute" /> instance.</param>
-      <returns>
-        <c>true</c> if the type can be loaded; otherwise, it returns <c>false</c>.</returns>
-    </member>
-    <member name="M:LinFu.Reflection.PluginLoader`2.Load(System.Type)">
-      <summary>
-            Loads a set of actions from a <see cref="T:System.Type" />
-            instance.
-            </summary>
-      <param name="input">The target type to scan.</param>
-      <returns>A set of actions which will be applied to the target <see cref="T:LinFu.Reflection.ILoader`1" /> instance.</returns>
-    </member>
-    <member name="T:LinFu.Reflection.Plugins.BaseLoaderPlugin`1">
-      <summary>
-            A class that implements the basic functionality of
-            a loader plugin.
-            </summary>
-      <typeparam name="TTarget">The type being loaded.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.Plugins.BaseLoaderPlugin`1.BeginLoad(`0)">
-      <summary>
-            Signals the beginning of a load.
-            </summary>
-      <param name="target">The target being loaded.</param>
-    </member>
-    <member name="M:LinFu.Reflection.Plugins.BaseLoaderPlugin`1.EndLoad(`0)">
-      <summary>
-            Signals the end of a load.
-            </summary>
-      <param name="target">The target being loaded.</param>
-    </member>
-    <member name="T:LinFu.Reflection.Plugins.BaseTargetLoaderPlugin`1">
-      <summary>
-            A plugin class that provides the basic implementation
-            for plugins that work with <see cref="T:LinFu.Reflection.IAssemblyTargetLoader`1" /> instances.
-            </summary>
-      <typeparam name="TTarget">The target type being configured.</typeparam>
-    </member>
-    <member name="M:LinFu.Reflection.Plugins.BaseTargetLoaderPlugin`1.Initialize(LinFu.Reflection.ILoader{`0})">
-      <summary>
-            Searches the loader for an <see cref="T:LinFu.Reflection.IAssemblyTargetLoader`1" />
-            instance and uses its derived classes to initialize
-            the assembly target loader.
-            </summary>
-      <param name="source">The <see cref="T:LinFu.Reflection.ILoader`1" /> instance that will hold the plugin.</param>
-    </member>
-    <member name="M:LinFu.Reflection.Plugins.BaseTargetLoaderPlugin`1.Initialize(LinFu.Reflection.ILoader{`0},LinFu.Reflection.IAssemblyTargetLoader{`0})">
-      <summary>
-            Initializes the <paramref name="loader" /> instance
-            with the given <paramref name="assemblyLoader" /> instance.
-            </summary>
-      <param name="loader">The loader being configured.</param>
-      <param name="assemblyLoader">The assembly loader that will load the types into the loader itself.</param>
-    </member>
-    <member name="T:LinFu.Reflection.Runtime">
-      <summary>
-            Adds helper methods that return information about the current
-            runtime.
-            </summary>
-    </member>
-    <member name="P:LinFu.Reflection.Runtime.IsRunningOnMono">
-      <summary>
-            Gets a value indicating if the application is
-            currently running on the Mono platform.
-            </summary>
-    </member>
-    <member name="T:LinFu.Reflection.TypeExtractor">
-      <summary>
-            Represents a type that can extract <see cref="T:System.Type" />
-            objects from an <see cref="T:System.Reflection.Assembly" /> instance.
-            </summary>
-    </member>
-    <member name="M:LinFu.Reflection.TypeExtractor.GetTypes(System.Reflection.Assembly)">
-      <summary>
-            Returns a set of types from a given assembly.
-            </summary>
-      <param name="targetAssembly">The <see cref="T:System.Reflection.Assembly" /> that contains the target types.</param>
-      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of types from the target assembly.</returns>
     </member>
     <member name="T:LinFu.Reflection.Emit.AssemblyDefinitionExtensions">
       <summary>

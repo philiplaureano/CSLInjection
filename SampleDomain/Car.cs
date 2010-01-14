@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SampleDomain
 {
-    public class Car
+    public abstract class Car
     {
         private Engine _engine;
 
-        public void Move()
+        public virtual void Move()
         {
             CreateEngineIfNecessary();
 
@@ -17,7 +17,7 @@ namespace SampleDomain
             Console.WriteLine("The car is now moving.");
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
             CreateEngineIfNecessary();
             _engine.Stop();

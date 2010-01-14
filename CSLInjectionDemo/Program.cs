@@ -24,17 +24,19 @@ namespace CSLInjectionDemo
             return;
         }
 
-        private static bool ShouldInterceptNewOperator(MethodReference constructor, TypeReference declaringType, MethodReference hostMethod)
+        private static bool ShouldInterceptNewOperator(TypeReference declaringType)
         {
-            var result = !declaringType.IsValueType &&
-                         hostMethod.HasThis;
+            // Intercept all reference type instantiations
+            var result = !declaringType.IsValueType;
 
             return result;
         }
 
         private static bool ShouldInjectCurrentMethod(MethodReference currentMethod)
         {
-            return true;
+            // The new operator interception framework will be injected into
+            // every instance method
+            return currentMethod.HasThis;
         }
     }
 }
